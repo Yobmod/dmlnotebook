@@ -27,9 +27,10 @@ username = os.getenv("GIT_USERNAME") or "DML"
 password = os.getenv("GIT_PASSWORD")  # or None
 
 if hasattr(repo.remotes, 'origin'):
-    repo.remotes.origin.pull()
+    repo.git.pull('origin', 'master')
 else:
     print("no repo found on Github")
+    print("try cmd: git remote add origin remote repository URL")
 
 if repo.is_dirty():
     changedFiles = [item.a_path for item in repo.index.diff(None)]
